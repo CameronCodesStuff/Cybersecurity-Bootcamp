@@ -11,6 +11,10 @@ Levels starting with absloute basics all the way too advanced.
 
 ⚬──────────✧──────────⚬  
 
-    
+## Installing
+
+    git clone https://github.com/CameronCodesStuff/Cybersecurity-Bootcamp.git
+
+⚬──────────✧──────────⚬  
 
 
