@@ -1,2 +1,2 @@
-# Cybersecurity-BootCamp-
-Cybersecurity Bootcamp ⚬──────────✧──────────⚬  
+# Cybersecurity Bootcamp
+⚬──────────✧──────────⚬  
