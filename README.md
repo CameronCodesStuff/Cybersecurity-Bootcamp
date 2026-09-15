@@ -13,6 +13,10 @@ Levels starting with absloute basics all the way too advanced.
 
 ⚬──────────✧──────────⚬  
 
+[License](https://github.com/CameronCodesStuff/Cybersecurity-Bootcamp?tab=MIT-1-ov-file))
+
+⚬──────────✧──────────⚬  
+
 ## Installing
 
     git clone https://github.com/CameronCodesStuff/Cybersecurity-Bootcamp.git
