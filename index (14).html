@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cybersecurity Bootcamp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ── Disclaimer ──────────────────────────────────── -->
+<div class="disclaimer">
+  ⚠️ &nbsp;Educational use only — all demos run entirely in your browser. No data is sent anywhere.
+</div>
+
+<!-- ── Header ──────────────────────────────────────── -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo">
+      <div class="logo-icon">&#x7B;</div>
+      cybersec-bootcamp
+    </div>
+    <span class="badge">v1.0 · 4 modules</span>
+  </div>
+</header>
+
+<!-- ── Hero ────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-label">Interactive Security Education</div>
+    <h1>Learn how attackers<br><span>think and operate</span></h1>
+    <p class="hero-desc">
+      Four of the most common attack types, explained plainly and demonstrated
+      safely — right here in your browser. No setup, no risk.
+    </p>
+    <div class="terminal-preview">
+      <span class="prompt">$ </span><span id="typer"></span><span class="cursor"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Module Section ──────────────────────────────── -->
+<section class="module-section">
+  <div class="container">
+
+    <div class="modules-label">SELECT A MODULE</div>
+
+    <!-- Tab buttons -->
+    <div class="module-tabs">
+
+      <button class="module-tab" data-module="xss">
+        <span class="tab-icon">🪝</span>
+        <span class="tab-name">XSS</span>
+        <span class="tab-risk risk-high">High Risk</span>
+      </button>
+
+      <button class="module-tab" data-module="sqli">
+        <span class="tab-icon">💉</span>
+        <span class="tab-name">SQL Injection</span>
+        <span class="tab-risk risk-high">High Risk</span>
+      </button>
+
+      <button class="module-tab" data-module="brute">
+        <span class="tab-icon">🔐</span>
+        <span class="tab-name">Bruteforce</span>
+        <span class="tab-risk risk-med">Medium Risk</span>
+      </button>
+
+      <button class="module-tab" data-module="ddos">
+        <span class="tab-icon">🌊</span>
+        <span class="tab-name">DDoS</span>
+        <span class="tab-risk risk-med">Medium Risk</span>
+      </button>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         PANEL: XSS
+    ══════════════════════════════════════════════ -->
+    <div class="module-panel" id="panel-xss">
+      <div class="panel-grid">
+
+        <div class="panel-explain">
+          <h2>Cross-Site Scripting</h2>
+          <div class="subtitle">XSS · Injection Attack</div>
+          <p>
+            XSS happens when a website lets users post text or content,
+            and that content gets shown to other visitors <em>without being checked first</em>.
+            An attacker can write actual code disguised as a comment or message.
+          </p>
+          <p>
+            When other people load the page, their browser sees the code and
+            runs it — because it trusts anything that comes from the website.
+            The attacker's code can then steal login cookies, redirect the page, or silently record everything the victim types.
+          </p>
+          <div class="how-it-works">
+            <h3>HOW IT WORKS</h3>
+            <ol class="steps">
+              <li><span class="n">1</span>Attacker types JavaScript into a comment box instead of a real message.</li>
+              <li><span class="n">2</span>Website saves it to the database without sanitising it.</li>
+              <li><span class="n">3</span>Next visitor loads the page — the browser sees and executes the script.</li>
+              <li><span class="n">4</span>Attacker's code runs with full access to the victim's session.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="panel-demo">
+          <div class="demo-label">LIVE DEMO — Comment Box</div>
+
+          <div class="hint-box">
+            This is a comment box with no protection. Try posting:<br>
+            <span class="try">&lt;script&gt;alert('hacked')&lt;/script&gt;</span><br>
+            or: <span class="try">&lt;img src=x onerror=alert(1)&gt;</span>
+          </div>
+
+          <div class="xss-preview-label">Page preview (what visitors see)</div>
+          <div class="xss-preview" id="xss-preview">
+            <span style="color:#aaa;font-size:0.85rem">Your comment will appear here...</span>
+          </div>
+
+          <div class="demo-field">
+            <label for="xss-input">Your comment</label>
+            <input class="demo-input" id="xss-input" type="text"
+              placeholder="Write a comment..." autocomplete="off" />
+          </div>
+
+          <div style="display:flex;gap:0.5rem;">
+            <button class="btn btn-primary" id="xss-post">Post Comment</button>
+            <button class="reset-btn" id="xss-reset">reset</button>
+          </div>
+
+          <div class="demo-output" id="xss-out"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         PANEL: SQL INJECTION
+    ══════════════════════════════════════════════ -->
+    <div class="module-panel" id="panel-sqli">
+      <div class="panel-grid">
+
+        <div class="panel-explain">
+          <h2>SQL Injection</h2>
+          <div class="subtitle">SQLi · Database Attack</div>
+          <p>
+            Most websites store your data in a database, and they use a language
+            called SQL to look things up — like checking if your password is correct.
+          </p>
+          <p>
+            SQL Injection tricks the database by sneaking extra commands into
+            a login form. Instead of just a username, you type something that
+            <em>breaks out of the expected query</em> and rewrites its logic entirely —
+            often making it return every user, which logs you in as the first one (usually admin).
+          </p>
+          <div class="how-it-works">
+            <h3>HOW IT WORKS</h3>
+            <ol class="steps">
+              <li><span class="n">1</span>Website builds a query: <code>WHERE user='?' AND pass='?'</code></li>
+              <li><span class="n">2</span>Attacker types <code>' OR 1=1--</code> as the username.</li>
+              <li><span class="n">3</span>Query becomes: <code>WHERE user='' OR 1=1--'</code> — always true.</li>
+              <li><span class="n">4</span>Database returns all users. You're in as admin.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="panel-demo">
+          <div class="demo-label">LIVE DEMO — Login Form</div>
+
+          <div class="hint-box">
+            Try this in the username field:<br>
+            <span class="try">admin'--</span><br>
+            or: <span class="try">' OR 1=1--</span><br>
+            (password can be anything)
+          </div>
+
+          <div class="demo-field">
+            <label for="sql-user">Username</label>
+            <input class="demo-input" id="sql-user" type="text"
+              placeholder="Enter username" autocomplete="off" />
+          </div>
+
+          <div class="demo-field">
+            <label for="sql-pass">Password</label>
+            <input class="demo-input" id="sql-pass" type="text"
+              placeholder="Enter password" autocomplete="off" />
+          </div>
+
+          <div style="display:flex;gap:0.5rem;align-items:center;">
+            <button class="btn btn-primary" id="sql-btn">Log In</button>
+            <button class="reset-btn" id="sql-reset">reset</button>
+          </div>
+
+          <div class="demo-output" id="sql-out"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         PANEL: BRUTEFORCE
+    ══════════════════════════════════════════════ -->
+    <div class="module-panel" id="panel-brute">
+      <div class="panel-grid">
+
+        <div class="panel-explain">
+          <h2>Brute Force Attack</h2>
+          <div class="subtitle">Credential Attack · Wordlist</div>
+          <p>
+            A brute force attack is exactly what it sounds like: just trying
+            every possible password until one works. Attackers don't guess randomly —
+            they use giant lists of the most common passwords (often from real data breaches)
+            and automated tools that can try thousands per second.
+          </p>
+          <p>
+            A weak password like <code>password</code> or <code>123456</code> will be
+            cracked in milliseconds. A strong, unique password takes years or is
+            practically impossible.
+          </p>
+          <div class="how-it-works">
+            <h3>HOW IT WORKS</h3>
+            <ol class="steps">
+              <li><span class="n">1</span>Attacker gets a wordlist of millions of common passwords.</li>
+              <li><span class="n">2</span>An automated script submits each one in rapid succession.</li>
+              <li><span class="n">3</span>If no rate-limiting exists, thousands can be tried per second.</li>
+              <li><span class="n">4</span>Weak passwords are found almost instantly.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="panel-demo">
+          <div class="demo-label">LIVE DEMO — Wordlist Attack</div>
+
+          <div class="hint-box">
+            A random weak password has been set. Watch the attack cycle through common passwords until it finds a match.
+          </div>
+
+          <div class="demo-field">
+            <label for="bf-target">Target account</label>
+            <input class="demo-input" id="bf-target" type="text"
+              value="admin@example.com" autocomplete="off" />
+          </div>
+
+          <div class="progress-bar-wrap">
+            <div class="progress-bar" id="bf-bar"></div>
+          </div>
+
+          <div class="bf-log" id="bf-log">
+            <span style="color:var(--text-dim)">Press "Start Attack" to begin...</span>
+          </div>
+
+          <div style="display:flex;gap:0.5rem;margin-top:0.75rem;flex-wrap:wrap;align-items:center;">
+            <button class="btn btn-danger" id="bf-start">▶ Start Attack</button>
+            <button class="btn btn-ghost" id="bf-stop" disabled>⏹ Stop</button>
+            <button class="reset-btn" id="bf-reset">reset</button>
+          </div>
+
+          <div class="demo-output" id="bf-out"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         PANEL: DDOS
+    ══════════════════════════════════════════════ -->
+    <div class="module-panel" id="panel-ddos">
+      <div class="panel-grid">
+
+        <div class="panel-explain">
+          <h2>Distributed Denial of Service</h2>
+          <div class="subtitle">DDoS · Availability Attack</div>
+          <p>
+            A DDoS attack doesn't try to steal anything. Its only goal is to make
+            a website or service <em>completely unreachable</em> — for everyone.
+            It does this by sending so many fake requests that the server gets
+            overwhelmed and can't respond to real users anymore.
+          </p>
+          <p>
+            The "Distributed" part means the traffic comes from thousands of
+            different computers at once (often infected machines the attacker controls
+            without their owners knowing), making it nearly impossible to block.
+          </p>
+          <div class="how-it-works">
+            <h3>HOW IT WORKS</h3>
+            <ol class="steps">
+              <li><span class="n">1</span>Attacker controls a botnet — thousands of compromised devices.</li>
+              <li><span class="n">2</span>All devices are told to flood one target with requests simultaneously.</li>
+              <li><span class="n">3</span>The target's bandwidth and CPU are completely consumed.</li>
+              <li><span class="n">4</span>Legitimate users get timeouts. The service is effectively down.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="panel-demo">
+          <div class="demo-label">LIVE DEMO — Server Load Simulator</div>
+
+          <div class="hint-box">
+            Watch the server load climb as fake requests pour in. See what happens when it hits 100%.
+          </div>
+
+          <div class="server-display">
+            <div class="server-stat">
+              <span class="label">Status</span>
+              <span class="value" id="ddos-status" style="color:var(--green)">ONLINE</span>
+            </div>
+            <div class="req-counter">
+              <span id="ddos-count">0</span>
+              <span class="req-label">total requests received</span>
+            </div>
+            <div class="server-stat">
+              <span class="label">Rate</span>
+              <div class="meter-wrap">
+                <div class="meter ok" id="ddos-meter" style="width:0%"></div>
+              </div>
+              <span class="value" id="ddos-rps">0 req/s</span>
+            </div>
+          </div>
+
+          <div class="ddos-btns">
+            <button class="btn btn-danger" id="ddos-start">▶ Launch Attack</button>
+            <button class="btn btn-ghost" id="ddos-stop" disabled>⏹ Stop</button>
+            <button class="reset-btn" id="ddos-reset">reset</button>
+          </div>
+
+          <div class="demo-output" id="ddos-out"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /.container -->
+</section>
+
+<!-- ── Footer ───────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <span>cybersec-bootcamp</span> · built for education, not exploitation · all demos run client-side only
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
