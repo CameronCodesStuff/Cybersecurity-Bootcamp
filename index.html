@@ -5,123 +5,196 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Cybersecurity Bootcamp — beginner-friendly interactive security lessons.">
   <title>Cybersecurity Bootcamp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Cybersecurity Bootcamp home">
-      <span class="brand-mark">CB</span>
-      <span>Cybersecurity Bootcamp</span>
-    </a>
-    <a class="header-link" href="#modules">Explore modules <span>↓</span></a>
-  </header>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <div class="brand-icon">CB</div>
+        Cybersecurity Bootcamp
+      </a>
+      <a class="nav-pill" href="#modules">4 modules</a>
+    </div>
+  </nav>
 
   <main id="top">
+
+    <!-- HERO -->
     <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">LEARN SECURITY · ONE CONCEPT AT A TIME</p>
-        <h1>Understand how attacks work.<br><span>Build safer systems.</span></h1>
-        <p class="hero-text">
-          Short explanations, friendly examples, and tiny interactive sandboxes.
-          No jargon wall. No overwhelming labs. Just the core idea and a safe place to try it.
+      <div>
+        <div class="hero-kicker">Beginner-friendly · Safe sandbox · No server connection</div>
+        <h1>Learn how attacks work.<br><em>Build safer things.</em></h1>
+        <p class="hero-sub">
+          Four interactive modules covering the most common web vulnerabilities.
+          Each one walks you through the concept, gives you a safe sandbox to try it,
+          and checks your understanding before you move on.
         </p>
-        <a class="primary-btn" href="#modules">Start learning <span>→</span></a>
+        <a class="hero-cta" href="#modules">Explore modules ↓</a>
       </div>
-      <div class="hero-card" aria-label="Bootcamp preview">
-        <div class="terminal-top"><span></span><span></span><span></span></div>
-        <div class="terminal-body">
-          <p><span class="muted">$</span> bootcamp --mode beginner</p>
-          <p class="terminal-accent">✓ sandbox ready</p>
-          <p><span class="muted">→</span> 4 modules loaded</p>
-          <p><span class="muted">→</span> learn by doing</p>
+      <div class="hero-terminal">
+        <div class="term-bar">
+          <div class="term-dot"></div>
+          <div class="term-dot"></div>
+          <div class="term-dot"></div>
+          <span class="term-title">bootcamp — zsh</span>
+        </div>
+        <div class="term-body">
+          <div class="term-line"><span class="p">~</span> <span class="cmd">bootcamp init</span></div>
+          <div class="term-line"><span class="ok">✓ sandbox ready (no network)</span></div>
+          <div class="term-line"><span class="ok">✓ 4 modules loaded</span></div>
+          <div class="term-line">&nbsp;</div>
+          <div class="term-line"><span class="p">~</span> <span class="cmd">bootcamp list</span></div>
+          <div class="term-line"><span class="warn">[ 1 ]</span> XSS        web security</div>
+          <div class="term-line"><span class="warn">[ 2 ]</span> SQLi       databases</div>
+          <div class="term-line"><span class="err">[ 3 ]</span> BruteForce auth attacks</div>
+          <div class="term-line"><span class="err">[ 4 ]</span> DDoS       availability</div>
+          <div class="term-line">&nbsp;</div>
+          <div class="term-line"><span class="p">~</span> <span class="term-cursor"></span></div>
         </div>
       </div>
     </section>
 
-    <section class="modules-section" id="modules">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">THE BASICS</p>
-          <h2>Pick a module</h2>
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stats-inner">
+        <div class="stat-item">
+          <div class="stat-num">4<span>×</span></div>
+          <div class="stat-label">vulnerability types</div>
         </div>
-        <p>Every module follows the same simple flow: <strong>Understand → Try → Reflect.</strong></p>
+        <div class="stat-item">
+          <div class="stat-num">3<span>×</span></div>
+          <div class="stat-label">steps per module</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-label">runs in your browser</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">0<span>×</span></div>
+          <div class="stat-label">network connections</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULES -->
+    <section class="modules-section" id="modules">
+      <div class="section-header">
+        <div class="section-tag">THE MODULES</div>
+        <h2>Pick where to start</h2>
+        <p>Each module follows the same flow: understand the attack, try it safely, then test what you learned.</p>
       </div>
 
       <div class="module-grid">
         <button class="module-card" data-module="xss">
-          <span class="module-icon">01</span>
-          <span class="module-title">Cross-Site Scripting <small>XSS</small></span>
-          <span class="module-description">See why untrusted text should never become executable code in a browser.</span>
-          <span class="module-arrow">→</span>
+          <span class="module-tag tag-web">WEB SECURITY</span>
+          <span class="module-title">Cross-Site Scripting</span>
+          <span class="module-desc">Discover why browsers can be tricked into running code from untrusted input — and how a single missing escape can expose every visitor to your site.</span>
+          <div class="module-footer">
+            <span class="module-meta">~8 min · XSS</span>
+            <span class="module-arrow">→</span>
+          </div>
         </button>
 
         <button class="module-card" data-module="sql">
-          <span class="module-icon">02</span>
-          <span class="module-title">SQL Injection <small>SQLi</small></span>
-          <span class="module-description">Explore how unsafe database queries can accidentally change what a login means.</span>
-          <span class="module-arrow">→</span>
+          <span class="module-tag tag-db">DATABASE SECURITY</span>
+          <span class="module-title">SQL Injection</span>
+          <span class="module-desc">See how attackers turn a login form into a database backdoor by slipping SQL operators into a username or password field.</span>
+          <div class="module-footer">
+            <span class="module-meta">~8 min · SQLi</span>
+            <span class="module-arrow">→</span>
+          </div>
         </button>
 
         <button class="module-card" data-module="bruteforce">
-          <span class="module-icon">03</span>
-          <span class="module-title">Brute Force</span>
-          <span class="module-description">Watch repeated guesses work against a deliberately tiny demo password.</span>
-          <span class="module-arrow">→</span>
+          <span class="module-tag tag-auth">AUTHENTICATION</span>
+          <span class="module-title">Brute Force Attacks</span>
+          <span class="module-desc">Watch an automated guesser crack a weak password one attempt at a time, and learn why password strength alone is never the whole story.</span>
+          <div class="module-footer">
+            <span class="module-meta">~7 min · BruteForce</span>
+            <span class="module-arrow">→</span>
+          </div>
         </button>
 
         <button class="module-card" data-module="ddos">
-          <span class="module-icon">04</span>
-          <span class="module-title">DDoS</span>
-          <span class="module-description">Visualise how too much traffic can consume a service's available capacity.</span>
-          <span class="module-arrow">→</span>
+          <span class="module-tag tag-net">AVAILABILITY</span>
+          <span class="module-title">DDoS Attacks</span>
+          <span class="module-desc">Visualise how a flood of requests from thousands of sources consumes a service's capacity until it stops responding to legitimate traffic.</span>
+          <div class="module-footer">
+            <span class="module-meta">~7 min · DDoS</span>
+            <span class="module-arrow">→</span>
+          </div>
         </button>
       </div>
     </section>
 
+    <!-- LESSON PANEL -->
     <section class="lesson-panel" id="lesson" hidden>
-      <div class="lesson-header">
-        <div>
-          <p class="eyebrow" id="lesson-label">MODULE</p>
-          <h2 id="lesson-title">Lesson</h2>
-        </div>
-        <button class="close-btn" id="closeLesson" aria-label="Close module">×</button>
-      </div>
-
-      <div class="lesson-layout">
-        <article class="explanation">
-          <div class="step-label">01 · UNDERSTAND</div>
-          <p id="lesson-explanation"></p>
-          <div class="takeaway">
-            <span>Key idea</span>
-            <p id="lesson-takeaway"></p>
+      <div class="lesson-wrap">
+        <div class="lesson-topbar">
+          <div class="lesson-breadcrumb">
+            <span>Bootcamp</span>
+            <span style="color:var(--dim)">›</span>
+            <strong id="lesson-breadcrumb-title">Module</strong>
           </div>
-        </article>
+          <button class="close-btn" id="closeLesson" aria-label="Close module">×</button>
+        </div>
 
-        <article class="demo">
-          <div class="step-label">02 · TRY THE SAFE DEMO</div>
-          <h3 id="demo-title">Interactive demo</h3>
-          <p class="demo-hint" id="demo-hint"></p>
-          <div id="demo-area"></div>
-          <div class="demo-result" id="demo-result" aria-live="polite"></div>
-        </article>
+        <nav class="steps-nav" id="steps-nav">
+          <button class="step-tab" id="tab-understand">
+            <span class="step-num"><span class="step-num-inner">1</span></span>
+            <span>Understand</span>
+          </button>
+          <button class="step-tab" id="tab-try">
+            <span class="step-num"><span class="step-num-inner">2</span></span>
+            <span>Try it</span>
+          </button>
+          <button class="step-tab" id="tab-reflect">
+            <span class="step-num"><span class="step-num-inner">3</span></span>
+            <span>Reflect</span>
+          </button>
+        </nav>
+
+        <div class="step-content" id="pane-understand"></div>
+        <div class="step-content" id="pane-try"></div>
+        <div class="step-content" id="pane-reflect"></div>
       </div>
     </section>
 
-    <section class="principles">
-      <div>
-        <p class="eyebrow">THE BOOTCAMP RULE</p>
-        <h2>Curiosity is good.<br>Safety comes with it.</h2>
+    <!-- PRINCIPLES -->
+    <section class="principles-section">
+      <div class="principles-inner">
+        <div class="section-tag">THE BOOTCAMP ETHOS</div>
+        <h2>Curiosity is the right instinct.<br>Safety comes with it.</h2>
+        <div class="principles-grid">
+          <div class="principle-card">
+            <div class="principle-icon">🔒</div>
+            <h3>Fully sandboxed</h3>
+            <p>Every demo runs entirely in your browser. Nothing connects to a real server, database, or network. You cannot accidentally break anything.</p>
+          </div>
+          <div class="principle-card">
+            <div class="principle-icon">🎯</div>
+            <h3>One concept at a time</h3>
+            <p>We strip each vulnerability down to its essential mechanism. No noise, no jargon walls — just the core idea you need to understand the defense.</p>
+          </div>
+          <div class="principle-card">
+            <div class="principle-icon">🛡️</div>
+            <h3>Defense-first framing</h3>
+            <p>Understanding an attack is the fastest path to building effective defenses. Every module ends with practical mitigations you can apply right now.</p>
+          </div>
+        </div>
       </div>
-      <p>
-        These demos are intentionally self-contained. They model the security concept
-        without connecting to real accounts, websites, servers, or networks.
-      </p>
     </section>
+
   </main>
 
   <footer>
     <span>Cybersecurity Bootcamp</span>
-    <span>Built for learning · Local sandbox only</span>
+    <span>Local sandbox · No telemetry · No sign-up required</span>
   </footer>
 
   <script src="js/app.js"></script>
